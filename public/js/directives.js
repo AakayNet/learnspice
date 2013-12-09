@@ -35,6 +35,15 @@ angular.module('myApp.directives', []).directive('headerHandler',function (socke
         });
       }
     }
+  }).directive('addContentHandler',function (socket) {
+    return function (scope, element, attrs) {
+      element.bind('keydown', function (event) {
+        if (event.keyCode == 13 && !event.shiftKey) {
+          event.preventDefault();
+          scope.addLine(scope.section._id);
+        }
+      });
+    }
   }).directive('msdElastic', ['$timeout', '$window', function ($timeout, $window) {
     'use strict';
 
